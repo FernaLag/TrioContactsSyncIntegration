@@ -2,9 +2,7 @@
 {
     public static class MailchimpConstants
     {
-        public const string ApiKey = "e40a98e93acc45ed25354eb15c6e9c82-us7";
         public const string ListId = "41a403d5a9";
-
         public const string BaseAddress = "https://us7.api.mailchimp.com/3.0/";
         public const string BatchEndpoint = "batches";
         public const string MembersListEndPoint = $"/lists/{ListId}/members";

@@ -9,7 +9,11 @@ bootstrap.ConfigureServices(builder.Services);
 WebApplication app = builder.Build();
 
 app.UseSwagger();
-app.UseSwaggerUI();
+app.UseSwaggerUI(c =>
+{
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Trio Contact Sync");
+    c.RoutePrefix = string.Empty;
+});
 
 app.UseHttpsRedirection();
 

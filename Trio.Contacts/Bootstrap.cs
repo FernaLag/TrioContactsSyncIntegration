@@ -49,10 +49,13 @@ namespace Trio.ContactSync.Api
             services.AddScoped<IMailchimpClient>(serviceProvider =>
             {
                 IApiClientFactory apiClientFactory = serviceProvider.GetRequiredService<IApiClientFactory>();
+                IConfiguration configuration = serviceProvider.GetRequiredService<IConfiguration>();
+                string apiKey = configuration["Mailchimp:ApiKey"];
+
                 HttpClient httpClient = apiClientFactory.CreateHttpClient(MailchimpConstants.BaseAddress);
 
                 httpClient.DefaultRequestHeaders.Authorization =
-                    new AuthenticationHeaderValue("Bearer", MailchimpConstants.ApiKey);
+                    new AuthenticationHeaderValue("Bearer", apiKey);
 
                 return new MailchimpClient(httpClient);
             });

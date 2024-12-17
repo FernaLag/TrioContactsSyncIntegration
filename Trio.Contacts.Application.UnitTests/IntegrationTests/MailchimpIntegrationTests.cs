@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Shouldly;
 using System.Net.Http.Headers;
 using Trio.ContactSync.Application.Clients;
@@ -13,9 +14,15 @@ namespace Trio.ContactSync.Application.UnitTests.IntegrationTests
     public class MailchimpIntegrationTests
     {
         private readonly MailchimpClient _mailchimpClient;
+        private readonly IConfiguration _configuration;
 
         public MailchimpIntegrationTests()
         {
+            _configuration = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                .Build();
+
             ServiceCollection services = new();
             services.AddSingleton<IApiClientFactory, ApiClientFactory>();
             services.AddHttpClient();
@@ -26,7 +33,7 @@ namespace Trio.ContactSync.Application.UnitTests.IntegrationTests
             HttpClient httpClient = apiClientFactory.CreateHttpClient(MailchimpConstants.BaseAddress);
 
             httpClient.DefaultRequestHeaders.Authorization =
-                new AuthenticationHeaderValue("Bearer", MailchimpConstants.ApiKey);
+                new AuthenticationHeaderValue("Bearer", _configuration["Mailchimp:ApiKey"]);
 
             _mailchimpClient = new MailchimpClient(httpClient);
         }
