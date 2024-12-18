@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Trio.ContactSync.Application.Features.Mailchimp.Commands;
 using Trio.ContactSync.Domain.Contracts.Clients;
 
 namespace Trio.ContactSync.Application.Features.Mailchimp.Handlers

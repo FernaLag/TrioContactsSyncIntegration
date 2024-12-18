@@ -1,7 +1,10 @@
 ﻿using MediatR;
 using Trio.ContactSync.Domain;
 
-public class UpdateMailchimpMembersCommand(List<MailchimpMember> mailchimpMembers) : IRequest
+namespace Trio.ContactSync.Application.Features.Mailchimp.Commands
 {
-    public List<MailchimpMember> Members { get; set; } = mailchimpMembers;
+    public class UpdateMailchimpMembersCommand(List<MailchimpMember> mailchimpMembers) : IRequest
+    {
+        public List<MailchimpMember> Members { get; set; } = mailchimpMembers;
+    }
 }

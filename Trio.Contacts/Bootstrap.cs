@@ -11,12 +11,12 @@ namespace Trio.ContactSync.Api
 {
     public class Bootstrap()
     {
-        public void ConfigureServices(IServiceCollection services)
+        public void ConfigureServices(IServiceCollection services, IConfiguration configuration)
         {
-            BindServices(services);
+            BindServices(services, configuration);
         }
 
-        private static void BindServices(IServiceCollection services)
+        private static void BindServices(IServiceCollection services, IConfiguration configuration)
         {
             services.AddMediatR(configuration => configuration.RegisterServicesFromAssembly(typeof(SyncMockApiContactsToMailchimpRequestHandler).Assembly));
             services.AddAutoMapper(typeof(MailchimpProfile));
@@ -49,15 +49,12 @@ namespace Trio.ContactSync.Api
             services.AddScoped<IMailchimpClient>(serviceProvider =>
             {
                 IApiClientFactory apiClientFactory = serviceProvider.GetRequiredService<IApiClientFactory>();
-                IConfiguration configuration = serviceProvider.GetRequiredService<IConfiguration>();
-                string apiKey = configuration["Mailchimp:ApiKey"];
-
-                HttpClient httpClient = apiClientFactory.CreateHttpClient(MailchimpConstants.BaseAddress);
+                HttpClient httpClient = apiClientFactory.CreateHttpClient(configuration["Mailchimp:BaseAddress"]);
 
                 httpClient.DefaultRequestHeaders.Authorization =
-                    new AuthenticationHeaderValue("Bearer", apiKey);
+                    new AuthenticationHeaderValue("Bearer", configuration["Mailchimp:ApiKey"]);
 
-                return new MailchimpClient(httpClient);
+                return new MailchimpClient(httpClient, configuration);
             });
         }
     }

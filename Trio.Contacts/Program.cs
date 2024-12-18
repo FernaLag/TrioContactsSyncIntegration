@@ -4,7 +4,7 @@ using Trio.ContactSync.Api.Middleware;
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
 Bootstrap bootstrap = new();
-bootstrap.ConfigureServices(builder.Services);
+bootstrap.ConfigureServices(builder.Services, builder.Configuration);
 
 WebApplication app = builder.Build();
 

@@ -3,6 +3,7 @@ using Xunit;
 using Trio.ContactSync.Application.Features.Mailchimp.Handlers;
 using Trio.ContactSync.Domain;
 using Trio.ContactSync.Domain.Contracts.Clients;
+using Trio.ContactSync.Application.Features.Mailchimp.Commands;
 
 namespace Trio.ContactSync.Application.UnitTests.UnitTests.Mailchimp
 {

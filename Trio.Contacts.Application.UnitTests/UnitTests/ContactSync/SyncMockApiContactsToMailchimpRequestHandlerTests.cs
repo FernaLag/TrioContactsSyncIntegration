@@ -4,6 +4,7 @@ using Moq;
 using Shouldly;
 using Trio.ContactSync.Application.Features.ContactSync.Handlers;
 using Trio.ContactSync.Application.Features.ContactSync.Queries;
+using Trio.ContactSync.Application.Features.Mailchimp.Commands;
 using Trio.ContactSync.Application.Features.MockApi.Queries;
 using Trio.ContactSync.Application.UnitTests.UnitTests.Mocks;
 using Trio.ContactSync.Domain;

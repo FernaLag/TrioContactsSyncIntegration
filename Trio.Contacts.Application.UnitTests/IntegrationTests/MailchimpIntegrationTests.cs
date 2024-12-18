@@ -3,7 +3,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Shouldly;
 using System.Net.Http.Headers;
 using Trio.ContactSync.Application.Clients;
-using Trio.ContactSync.Application.Constants;
 using Trio.ContactSync.Application.Helpers;
 using Trio.ContactSync.Domain;
 using Trio.ContactSync.Domain.Contracts.Helpers;
@@ -30,12 +29,12 @@ namespace Trio.ContactSync.Application.UnitTests.IntegrationTests
             ServiceProvider serviceProvider = services.BuildServiceProvider();
 
             IApiClientFactory apiClientFactory = serviceProvider.GetRequiredService<IApiClientFactory>();
-            HttpClient httpClient = apiClientFactory.CreateHttpClient(MailchimpConstants.BaseAddress);
+            HttpClient httpClient = apiClientFactory.CreateHttpClient(_configuration["Mailchimp:BaseAddress"]);
 
             httpClient.DefaultRequestHeaders.Authorization =
                 new AuthenticationHeaderValue("Bearer", _configuration["Mailchimp:ApiKey"]);
 
-            _mailchimpClient = new MailchimpClient(httpClient);
+            _mailchimpClient = new MailchimpClient(httpClient, _configuration);
         }
 
         [Fact]

@@ -4,19 +4,21 @@ using Trio.ContactSync.Application.Constants;
 using System.Text;
 using Trio.ContactSync.Domain.Contracts.Clients;
 using System.Security.Cryptography;
+using Microsoft.Extensions.Configuration;
 
 namespace Trio.ContactSync.Application.Clients
 {
-    public class MailchimpClient(HttpClient httpClient) : IMailchimpClient
+    public class MailchimpClient(HttpClient httpClient, IConfiguration configuration) : IMailchimpClient
     {
         private readonly HttpClient _httpClient = httpClient;
+        private readonly IConfiguration _configuration = configuration;
 
         public async Task<HttpResponseMessage> PostBatchAsync(List<MailchimpMember> mailchimpMembers)
         {
             List<MailchimpOperation> operations = mailchimpMembers.Select((member, index) => new MailchimpOperation
             {
                 Method = "POST",
-                Path = MailchimpConstants.MembersListEndPoint,
+                Path = $"/lists/{_configuration["Mailchimp:ListId"]}/members",
                 OperationId = $"operation-{index}",
                 Body = JsonConvert.SerializeObject(new
                 {
@@ -37,7 +39,7 @@ namespace Trio.ContactSync.Application.Clients
             var operations = mailchimpMembers.Select(member => new
             {
                 method = "DELETE",
-                path = $"/lists/{MailchimpConstants.ListId}/members/{GetSubscriberHash(member.EmailAddress)}"
+                path = $"/lists/{_configuration["Mailchimp:ListId"]}/members/{GetSubscriberHash(member.EmailAddress)}"
             }).ToList();
 
             var deleteBatchRequest = new { operations };
