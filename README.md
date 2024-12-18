@@ -9,7 +9,7 @@ A robust API that integrates with **MockApi** and **Mailchimp** to synchronize c
 ### References
 
 - [**Technical Design**](https://www.notion.so/Trio-ContactSync-Technical-Design-15b322dfed9a80ecbd96cd8d827c96c5?pvs=21)
-- **Video Walkthrough**
+- [**Video Walkthrough**](https://youtu.be/vHuIoCD_dJg)
 
 ---
 
