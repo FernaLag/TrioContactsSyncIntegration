@@ -15,7 +15,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\Trio.Contacts.Domain\Trio.ContactSync.Domain.csproj" />
+	  <ProjectReference Include="..\Trio.ContactSync.Domain\Trio.ContactSync.Domain.csproj" />
 	</ItemGroup>
 
 </Project>

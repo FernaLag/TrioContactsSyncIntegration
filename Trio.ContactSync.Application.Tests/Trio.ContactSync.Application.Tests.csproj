@@ -19,8 +19,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Trio.Contacts.Application\Trio.ContactSync.Application.csproj" />
-    <ProjectReference Include="..\Trio.Contacts\Trio.ContactSync.Api.csproj" />
+    <ProjectReference Include="..\Trio.ContactSync.Api\Trio.ContactSync.Api.csproj" />
+    <ProjectReference Include="..\Trio.ContactSync.Application\Trio.ContactSync.Application.csproj" />
   </ItemGroup>
 
 </Project>
