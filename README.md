@@ -107,4 +107,4 @@ dotnet run --project Trio.ContactSync.Api
 
 ## **About the Author**
 
-Developed by **Fernando Laguna** - a passionate software engineer specializing in .NET solutions, cloud integration, and clean architecture.
+Developed by [Ferna](https://github.com/FernaLag) - a passionate software engineer specializing in .NET solutions, cloud integration, and clean architecture.
