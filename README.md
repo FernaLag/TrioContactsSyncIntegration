@@ -13,15 +13,16 @@ A robust API that integrates with **MockApi** and **Mailchimp** to synchronize c
 
 ---
 
-## **How to Run Locally**
+## **Setup**
 
-### **Clone the repository**
-
-Read this article [about cloning a repository](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository).
-
+1) Install **Visual Studio**.
+2) [Clone](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) the repository.
+3) Open `appsettings.json`, located inside the **Trio.ContactsSync.Api** project.
 ---
+   ![image](https://github.com/user-attachments/assets/8ee6690a-74e1-466e-9ad8-1c4868fa9df4)
 
-### **Configure the Mailchimp section in `appsettings.json` file**
+
+### **Configure the `appsettings.json` with your Mailchimp information.**
 
 ```json
 {
@@ -33,19 +34,13 @@ Read this article [about cloning a repository](https://docs.github.com/en/reposi
 }
 ```
 
-**Mailchimp** is an email marketing application that is very easy to use and well-documented.
-
 ### Create an Mailchimp account
 
 If you don't have a **Mailchimp** account already, you’ll need to [create one](https://login.mailchimp.com/signup/).
 
-- https://login.mailchimp.com/signup/
-
 ### **Generate your `API key`**
 
 Navigate to the [API Keys section](https://us1.admin.mailchimp.com/account/api/) of your Mailchimp account.
-
-- https://admin.mailchimp.com/account/api/
 
 Click **Create New Key** and copy the key **immediately**.
 
@@ -54,8 +49,6 @@ You won’t be able to see or copy the key again.
 ### Get your `ListId`
 
 Navigate to the [Audience Settings](https://admin.mailchimp.com/audience/settings/).
-
-- https://admin.mailchimp.com/audience/settings/
 
 Scroll down and retrieve the **Unique Audience ID,** which is your **ListId.**
 
@@ -67,7 +60,7 @@ Look at the URL in your browser, you’ll see something like `https://**us19**.a
 
 The **`us19`** part is your **server prefix**. Note that your specific value may vary.
 
-- Replace **`<dc>`** in `https://**<dc>**.api.mailchimp.com/3.0/` with your **Server Prefix.**
+- Replace **`<dc>`** in `https://<dc>.api.mailchimp.com/3.0/` with your **server prefix.**
 
 **BaseAddress example** 
 
@@ -103,6 +96,7 @@ dotnet run --project Trio.ContactSync.Api
 
 ## **Future Improvements**
 
+- Create validations for clients, e.g., a maximum number of operations per batch
 - CI/CD pipeline for automated deployment
 - Enhance swagger documentation
 - Endpoint to get all Mailchimp members
